@@ -203,7 +203,7 @@ jobs:
         id: upload
         with:
           workspace: ${{ github.event.repository.name }}
-          directory: release/terraform
+          directory: release
 
       - name: Create Apply Run
         uses: hashicorp/tfc-workflows-github/actions/create-run@v1.1.1
