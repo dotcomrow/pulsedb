@@ -2,6 +2,7 @@ resource "google_bigquery_dataset" "db" {
   dataset_id  = "${var.project_name}_dataset"
   description = "Dataset for ${var.project_name} project"
   location    = "US"
+  project = google_project.project.project_id
 
   depends_on = [google_project_service.project_service]
 }
