@@ -8,7 +8,7 @@ resource "google_bigquery_dataset" "db" {
 }
 
 module "schemas" {
-  source     = "../tables"
+  source     = "./tables"
   project_id = var.project_id
   dataset_id = google_bigquery_dataset.db.dataset_id
 
