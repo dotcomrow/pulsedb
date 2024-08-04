@@ -104,3 +104,9 @@ variable "R2_account_id" {
   type        = string
   nullable = false
 }
+
+variable "cloudflare_token" {
+  description = "cloudflare token"
+  type        = string
+  nullable    = false
+}
