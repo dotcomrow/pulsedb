@@ -10,6 +10,8 @@ jobs:
   build:
     name: "build"
     runs-on: ubuntu-latest
+    env:
+      TF_API_TOKEN: ${{ secrets.TFE_TOKEN }}
 
     steps:
       # Checkout the repository to the GitHub Actions runner
@@ -132,7 +134,7 @@ jobs:
           --request POST \
           --data @payload.json \
           --output output.txt \
-          https://app.terraform.io/api/v2/organizations/${{ vars.TF_ORGANIZATION }}/workspaces
+          https://app.terraform.io/api/v2/organizations/${{ github.repository_owner }}/workspaces
           echo "workspace_id=$(cat output.txt | jq -r '.[].id')" >> $GITHUB_OUTPUT
 
       - name: Create workspace variables
