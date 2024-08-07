@@ -29,15 +29,33 @@ async function main() {
   }
 
   async function getSchema() {
-    var regularFiles = fromDir('./', '.graphql');
-    
-    var combined = "";
+    try {
+      var regularFiles = fromDir('./', '.graphql');
+      
+      var combined = "";
 
-    for(let x = 0; x < regularFiles.length; x++) {
-      const data = fs.readFileSync(regularFiles[x],{ encoding: 'utf8', flag: 'r' });
-      combined += data;
+      for(let x = 0; x < regularFiles.length; x++) {
+        const data = fs.readFileSync(regularFiles[x],{ encoding: 'utf8', flag: 'r' });
+        combined += data;
+      }
+      return buildSchema(combined);
+    } catch (err) {
+      const responseError = serializeError(err);
+      await GCPLogger.logEntry(
+        process.env.GCP_LOGGING_PROJECT_ID,
+        logging_token.access_token,
+        process.env.LOG_NAME,
+        [
+          {
+            severity: "ERROR",
+            // textPayload: message,
+            jsonPayload: {
+              responseError,
+            },
+          },
+        ]
+      );
     }
-    return buildSchema(combined);
   }
 
   function fromDir(startPath, filter) {
@@ -75,8 +93,26 @@ async function main() {
     // const schema_json = introspectionFromSchema(mergedSchema);
 
     const regularFileName = 'graphql_schema.json';
-
-    const schema_json = introspectionFromSchema(await getSchema());
+    let schema_json = {};
+    try {
+        schema_json = introspectionFromSchema(await getSchema());
+    } catch (err) {
+      const responseError = serializeError(err);
+      await GCPLogger.logEntry(
+        process.env.GCP_LOGGING_PROJECT_ID,
+        logging_token.access_token,
+        process.env.LOG_NAME,
+        [
+          {
+            severity: "ERROR",
+            // textPayload: message,
+            jsonPayload: {
+              responseError,
+            },
+          },
+        ]
+      );
+    }
 
     let json = JSON.stringify(schema_json);
     // console.log(json);
