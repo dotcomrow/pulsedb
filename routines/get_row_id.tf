@@ -3,6 +3,7 @@ resource "google_bigquery_routine" "get_row_id" {
   routine_id      = "get_row_id"
   routine_type    = "PROCEDURE"
   language        = "SQL"
+  project = var.project_id
   
   arguments {
     name = "sequence_name"
