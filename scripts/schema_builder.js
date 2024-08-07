@@ -100,8 +100,9 @@ async function main() {
   async function query() {
     
     const regularFileName = 'graphql_schema.json';
+    var schema_txt = await getSchema();
     try {
-        var schema_json = introspectionFromSchema(await getSchema());
+        introspectionFromSchema(schema_txt);
     } catch (err) {
       const responseError = serializeError(err);
       await GCPLogger.logEntry(
@@ -121,7 +122,7 @@ async function main() {
       return;
     }
 
-    let json = JSON.stringify(introspectionFromSchema(await getSchema()));
+    let json = JSON.stringify(introspectionFromSchema(schema_txt));
 
     await fs.writeFile(regularFileName, json,{ flush:true }, (err) => {
       err && console.error(err)
