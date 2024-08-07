@@ -1,0 +1,13 @@
+cat > User.graphql <<EOF
+type User { id: ID! preferences: Preferences! privateKey: PKIKey! publicKey: PKIKey! updatedAt: Int! } extend type Query { user(id: ID!): User! } type Mutation { updateUserPreferences(id: ID!, preferences: Preferences!): User! updateUserPrivateKey(id: ID!, privateKey: PKIKey!): User! updateUserPublicKey(id: ID!, publicKey: PKIKey!): User! createUser(id: ID!, preferences: Preferences!, privateKey: PKIKey!, publicKey: PKIKey!): User! }
+EOF
+cat > Preferences.graphql <<EOF
+type Preferences { darkMode: Boolean! systemSetting: Boolean! }
+EOF
+cat > PKIKey.graphql <<EOF
+type PKIKey { alg: String! e: String! ext: Boolean! key_ops: [String!]! kty: String! n: String! }
+EOF
+cat > Query.graphql <<EOF
+""" The root query type, represents all of the entry points into our object graph. """ type Query { hello: String! }
+EOF
+
