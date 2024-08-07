@@ -1,0 +1,13 @@
+cat User.graphql <<EOF
+
+EOF
+cat Preferences.graphql <<EOF
+
+EOF
+cat PKIKey.graphql <<EOF
+
+EOF
+cat Query.graphql <<EOF
+
+EOF
+
