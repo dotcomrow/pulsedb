@@ -8,5 +8,5 @@ resource "google_bigquery_routine" "get_row_id" {
     name = "sequence_name"
     data_type = "{\"typeKind\" :  \"STRING\"}"
   } 
-  definition_body = templatefile("${path.module}/templates/get_row_id.template", { dataset = var.dataset_id })
+  definition_body = templatefile("${path.module}../templates/get_row_id.template", { dataset = var.dataset_id })
 }
