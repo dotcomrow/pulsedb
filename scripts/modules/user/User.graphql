@@ -1,0 +1,11 @@
+type User {
+    id: ID!
+    preferences: Preferences!
+    privateKey: PKIKey!
+    publicKey: PKIKey!
+    updatedAt: DateTime!
+}
+
+extend type Query {
+    user:(id: ID!): User!
+}
