@@ -16,12 +16,12 @@ async function main() {
   ).getAccessToken("https://www.googleapis.com/auth/logging.write");
 
   const r2 = new R2({
-      accountId: "$4",
-      accessKeyId: "$5",
-      secretAccessKey: "$6",
+      accountId: process.env.R2_ACCOUNT_ID,
+      accessKeyId: process.env.R2_ACCESS_KEY_ID,
+      secretAccessKey: process.env.R2_ACCESS_KEY_SECRET,
   });
 
-  const bucket = r2.bucket("$3");
+  const bucket = r2.bucket(process.env.BUCKET_NAME);
 
   async function uploadFile(filename) {
 
