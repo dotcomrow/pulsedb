@@ -93,9 +93,8 @@ async function main() {
     // const schema_json = introspectionFromSchema(mergedSchema);
 
     const regularFileName = 'graphql_schema.json';
-    let schema_json = {};
     try {
-        schema_json = introspectionFromSchema(await getSchema());
+        var schema_json = introspectionFromSchema(await getSchema());
     } catch (err) {
       const responseError = serializeError(err);
       await GCPLogger.logEntry(
