@@ -84,14 +84,7 @@ async function main() {
   };
 
   async function query() {
-    // var schemas = await fetchSchemas();
     
-    // const storage = new Storage();
-    // const mergedSchema = mergeSchemas({
-    //   schemas: schemas
-    // })
-    // const schema_json = introspectionFromSchema(mergedSchema);
-
     const regularFileName = 'graphql_schema.json';
     try {
         var schema_json = introspectionFromSchema(await getSchema());
@@ -111,12 +104,10 @@ async function main() {
           },
         ]
       );
+      return;
     }
 
-    let json = JSON.stringify(schema_json);
-    // console.log(json);
-
-    // console.log(admin_json);
+    let json = JSON.stringify(introspectionFromSchema(await getSchema()));
 
     await fs.writeFile(regularFileName, json,{ flush:true }, (err) => {
       err && console.error(err)
