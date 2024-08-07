@@ -18,7 +18,6 @@ EOF
 
 GRAPHQL_CONTENTS
 
-printf '%s' "$GOOGLE_CREDENTIALS" > key.json
 node schema_builder.js
 
 cat <<EOF
