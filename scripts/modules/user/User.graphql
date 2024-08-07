@@ -1,0 +1,18 @@
+type User {
+    id: ID!
+    preferences: Preferences!
+    privateKey: PKIKey!
+    publicKey: PKIKey!
+    updatedAt: DateTime!
+}
+
+extend type Query {
+    user(id: ID!): User!
+}
+
+type Mutation {
+    updateUserPreferences(id: ID!, preferences: Preferences!): User!
+    updateUserPrivateKey(id: ID!, privateKey: PKIKey!): User!
+    updateUserPublicKey(id: ID!, publicKey: PKIKey!): User!
+    createUser(id: ID!, preferences: Preferences!, privateKey: PKIKey!, publicKey: PKIKey!): User!
+}
