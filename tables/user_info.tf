@@ -12,23 +12,24 @@ resource "google_bigquery_table" "user_info" {
   },
   {
     "name": "preferences",
-    "type": "INTEGER"
+    "mode": "REQUIRED",
     "type": "JSON"
-  },
-  {
-    "name": "updated_at",
-    "type": "TIMESTAMP"
-    "type": "REQUIRED"
   },
   {
     "name": "private_key",
-    "type": "JSON"
-    "type": "REQUIRED"
+    "type": "JSON",
+    "mode": "REQUIRED"
   },
   {
     "name": "public_key",
-    "type": "JSON"
-    "type": "REQUIRED"
+    "type": "JSON",
+    "mode": "REQUIRED"
+  },
+  {
+    "defaultValueExpression": "CURRENT_TIMESTAMP",
+    "name": "updated_at",
+    "type": "TIMESTAMP",
+    "mode": "REQUIRED"
   }
 ]
 EOF
