@@ -21,51 +21,14 @@ async function main() {
     await bucket.uploadFile(filename, filename, {}, "application/json");
   }
 
-  async function getRegularSchema() {
+  async function getSchema() {
     var regularFiles = fromDir('./', '.graphql');
-    var adminFiles = fromDir('./', '.admin.graphql');
     regularFiles = regularFiles.filter( x => !new Set(adminFiles).has(x) );
     
     var combined = "";
 
     for(let x = 0; x < regularFiles.length; x++) {
       const data = fs.readFileSync(regularFiles[x],{ encoding: 'utf8', flag: 'r' });
-      combined += data;
-    }
-    return buildSchema(combined);
-  }
-
-  async function getAdminSchema() {
-    var adminFiles = fromDir('./', '.admin.graphql');
-    
-    var combined = "";
-
-    for(let x = 0; x < adminFiles.length; x++) {
-      const data = fs.readFileSync(adminFiles[x],{ encoding: 'utf8', flag: 'r' });
-      combined += data;
-      if (fs.existsSync(adminFiles[x].replace('.admin.graphql', '.graphql'))) {
-        const regData = fs.readFileSync(adminFiles[x].replace('.admin.graphql', '.graphql'),{ encoding: 'utf8', flag: 'r' });
-        combined += regData;
-      }
-    }
-    var additionalSchemas = [
-      "/Query.graphql",
-      "/Setting.graphql",
-      "/Weight.graphql",
-      "/Cart.graphql",
-      "/Date.graphql",
-      "/Price.graphql",
-      "/DateTime.graphql",
-      "/Country.graphql",
-      "/Province.graphql",
-      "/Status.graphql",
-      "/ShippingSetting.graphql",
-      "/StoreSetting.graphql",
-    ];
-    for(let x = 0; x < additionalSchemas.length; x++) {
-      var file = fromDir('./', additionalSchemas[x])[0];
-      console.log(file)
-      const data = fs.readFileSync(file,{ encoding: 'utf8', flag: 'r' });
       combined += data;
     }
     return buildSchema(combined);
@@ -106,15 +69,12 @@ async function main() {
     // const schema_json = introspectionFromSchema(mergedSchema);
 
     const regularFileName = 'graphql_schema.json';
-    const adminFileName = 'graphql_admin_schema.json';
 
-    const schema_json = introspectionFromSchema(await getRegularSchema());
-    const admin_schema_json = introspectionFromSchema(await getAdminSchema());
+    const schema_json = introspectionFromSchema(await getSchema());
 
     let json = JSON.stringify(schema_json);
     // console.log(json);
 
-    let admin_json = JSON.stringify(admin_schema_json);
     // console.log(admin_json);
 
     await fs.writeFile(regularFileName, json,{ flush:true }, (err) => {
@@ -126,19 +86,6 @@ async function main() {
         return
       }
       await uploadFile(regularFileName);
-    });
-
-
-
-    await fs.writeFile(adminFileName, admin_json,{ flush:true }, (err) => {
-      err && console.error(err)
-    });
-    fs.readFile(adminFileName, 'utf8', async (err, data) => {
-      if (err) {
-        console.error(err)
-        return
-      }
-      await uploadFile(adminFileName);
     });
   }
 
