@@ -3,7 +3,7 @@ type User {
     preferences: Preferences!
     privateKey: PKIKey!
     publicKey: PKIKey!
-    updatedAt: DateTime!
+    updatedAt: Int!
 }
 
 extend type Query {
