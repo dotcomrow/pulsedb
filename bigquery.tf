@@ -15,6 +15,14 @@ module "schemas" {
   depends_on = [google_bigquery_dataset.db]
 }
 
+module "functions" {
+  source     = "./routines"
+  project_id = google_project.project.project_id
+  dataset_id = google_bigquery_dataset.db.dataset_id
+
+  depends_on = [google_bigquery_dataset.db]
+}
+
 resource "null_resource" "build_schema" {
 
   triggers = {
