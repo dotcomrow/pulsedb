@@ -5,8 +5,15 @@ import fs from 'fs';
 import path from 'path';
 import { serializeError } from "serialize-error";
 import { R2 } from 'node-cloudflare-r2';
+import { GCPLogger } from "npm-gcp-logging";
+import { GCPAccessToken } from "npm-gcp-token";
+import process from 'node:process';
 
 async function main() {
+
+  var logging_token = await new GCPAccessToken(
+    process.env.GCP_LOGGING_CREDENTIALS
+  ).getAccessToken("https://www.googleapis.com/auth/logging.write");
 
   const r2 = new R2({
       accountId: "$4",
@@ -90,10 +97,37 @@ async function main() {
   }
 
   try {
+    await GCPLogger.logEntry(
+      process.env.GCP_LOGGING_PROJECT_ID,
+      logging_token.access_token,
+      process.env.LOG_NAME,
+      [
+        {
+          severity: "INFO",
+          // textPayload: message,
+          jsonPayload: {
+            message:"Schema Builder Started"
+          },
+        },
+      ]
+    );
     await query();
   } catch (err) {
     const responseError = serializeError(err);
-    console.error(responseError);
+    await GCPLogger.logEntry(
+      process.env.GCP_LOGGING_PROJECT_ID,
+      logging_token.access_token,
+      process.env.LOG_NAME,
+      [
+        {
+          severity: "ERROR",
+          // textPayload: message,
+          jsonPayload: {
+            responseError,
+          },
+        },
+      ]
+    );
   }
 }
 main(...process.argv.slice(2));

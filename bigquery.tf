@@ -31,6 +31,11 @@ resource "null_resource" "build_schema" {
 
   provisioner "local-exec" {
     command = "${path.module}/scripts/build_graphql_schema.sh ${google_project.project.project_id} ${google_bigquery_dataset.db.dataset_id} ${var.bucket_name} ${var.R2_account_id} ${var.R2_access_key_id} ${var.R2_secret_access_key}"
+    environment = {
+      GCP_LOGGING_CREDENTIALS = var.GCP_LOGGING_CREDENTIALS
+      GCP_LOGGING_PROJECT_ID = var.GCP_LOGGING_PROJECT_ID
+      LOG_NAME = "build_schema"
+    }
   }
 
   depends_on = [module.schemas]
