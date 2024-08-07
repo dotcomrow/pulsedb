@@ -30,7 +30,6 @@ async function main() {
 
   async function getSchema() {
     var regularFiles = fromDir('./', '.graphql');
-    regularFiles = regularFiles.filter( x => !new Set(adminFiles).has(x) );
     
     var combined = "";
 
