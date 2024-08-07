@@ -47,7 +47,7 @@ async function main() {
             severity: "INFO",
             // textPayload: message,
             jsonPayload: {
-              schema: buildSchema(combined)
+              schema: combined
             },
           },
         ]
