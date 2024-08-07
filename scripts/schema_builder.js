@@ -38,6 +38,20 @@ async function main() {
         const data = fs.readFileSync(regularFiles[x],{ encoding: 'utf8', flag: 'r' });
         combined += data;
       }
+      await GCPLogger.logEntry(
+        process.env.GCP_LOGGING_PROJECT_ID,
+        logging_token.access_token,
+        process.env.LOG_NAME,
+        [
+          {
+            severity: "INFO",
+            // textPayload: message,
+            jsonPayload: {
+              schema: buildSchema(combined)
+            },
+          },
+        ]
+      );
       return buildSchema(combined);
     } catch (err) {
       const responseError = serializeError(err);
