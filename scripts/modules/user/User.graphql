@@ -14,7 +14,6 @@ type Mutation {
     updateUserPreferences(id: ID!, preferences: PreferencesInput!): User!
     updateUserPrivateKey(id: ID!, privateKey: PKIKeyInput!): User!
     updateUserPublicKey(id: ID!, publicKey: PKIKeyInput!): User!
-    createUser(id: ID!, preferences: PreferencesInput!, privateKey: PKIKeyInput!, publicKey: PKIKeyInput!): User!
 }
 
 input UserInput {
