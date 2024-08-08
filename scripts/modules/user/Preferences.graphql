@@ -1,0 +1,4 @@
+type Preferences {
+    darkMode: Boolean!
+    systemSetting: Boolean!
+}
