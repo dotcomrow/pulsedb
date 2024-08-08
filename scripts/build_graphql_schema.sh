@@ -16,9 +16,7 @@ cat > schema_builder.js <<EOF
 JS_CONTENTS
 EOF
 
-rm -rf modules/*.graphql
 
-GRAPHQL_CONTENTS
 
 node schema_builder.js
 
