@@ -6,3 +6,12 @@ type PKIKey {
     kty: String!
     n: String!
 }
+
+input PKIKeyInput {
+    alg: String!
+    e: String!
+    ext: Boolean!
+    key_ops: [String!]!
+    kty: String!
+    n: String!
+}
