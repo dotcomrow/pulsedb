@@ -1,9 +1,9 @@
 type Preferences {
-    darkMode: Boolean!
-    systemSetting: Boolean!
+    key: String!
+    value: String!
 }
 
 input PreferencesInput {
-    darkMode: Boolean!
-    systemSetting: Boolean!
+    key: String!
+    value: String!
 }

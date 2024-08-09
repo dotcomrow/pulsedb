@@ -1,6 +1,6 @@
 type User {
     id: ID!
-    preferences: Preferences!
+    preferences: [Preferences!]
     publicKey: PKIKey!
     updatedAt: Int!
 }
@@ -15,5 +15,5 @@ type Mutation {
 
 input UserInput {
     id: ID!
-    preferences: PreferencesInput!
+    preferences: [PreferencesInput!]
 }
