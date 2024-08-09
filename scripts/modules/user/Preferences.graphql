@@ -1,0 +1,9 @@
+type Preferences {
+    darkMode: Boolean!
+    systemSetting: Boolean!
+}
+
+input PreferencesInput {
+    darkMode: Boolean!
+    systemSetting: Boolean!
+}
