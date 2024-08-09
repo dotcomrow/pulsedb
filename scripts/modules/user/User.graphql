@@ -10,10 +10,5 @@ extend type Query {
 }
 
 type Mutation {
-    updateUserPreferences(id: ID!, preferences: PreferencesInput!): User!
-}
-
-input UserInput {
-    id: ID!
-    preferences: [PreferencesInput!]
+    updateUserPreferences(preferences: PreferencesInput!): User!
 }
