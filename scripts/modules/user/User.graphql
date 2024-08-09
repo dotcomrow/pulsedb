@@ -1,7 +1,6 @@
 type User {
     id: ID!
     preferences: Preferences!
-    privateKey: PKIKey!
     publicKey: PKIKey!
     updatedAt: Int!
 }
@@ -12,13 +11,9 @@ extend type Query {
 
 type Mutation {
     updateUserPreferences(id: ID!, preferences: PreferencesInput!): User!
-    updateUserPrivateKey(id: ID!, privateKey: PKIKeyInput!): User!
-    updateUserPublicKey(id: ID!, publicKey: PKIKeyInput!): User!
 }
 
 input UserInput {
     id: ID!
     preferences: PreferencesInput!
-    privateKey: PKIKeyInput!
-    publicKey: PKIKeyInput!
 }
