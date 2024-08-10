@@ -192,11 +192,11 @@ jobs:
         id: setvars
         run: |
             if [[ "${{github.base_ref}}" == "dev" || "${{github.ref}}" == "refs/heads/dev" ]]; then
-              echo "::set-output name=dataset_env::dev"
+              echo "dataset_env=dev" >> $GITHUB_OUTPUT
             fi
   
             if [[ "${{github.base_ref}}" == "prod" || "${{github.ref}}" == "refs/heads/prod" ]]; then
-              echo "::set-output name=dataset_env::prod"
+              echo "dataset_env=prod" >> $GITHUB_OUTPUT
             fi
 
       - name: Create Apply Run
