@@ -2,7 +2,7 @@ name: "Build and Deploy DB Schema"
 
 on:
   push:
-    branches: ["master"]
+    branches: ["prod", "dev"]
 
 permissions: write-all
 
