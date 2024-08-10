@@ -1,0 +1,14 @@
+type PKIKey {
+    alg: String!
+    e: String!
+    ext: Boolean!
+    key_ops: [String!]!
+    kty: String!
+    n: String!
+    d: String
+    dp: String
+    dq: String
+    p: String
+    q: String
+    qi: String
+}
