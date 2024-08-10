@@ -1,0 +1,14 @@
+type User {
+    id: ID!
+    preferences: [Preferences!]
+    publicKey: [PKIKey]!
+    updatedAt: Float!
+}
+
+extend type Query {
+    user: User
+}
+
+type Mutation {
+    updateUserPreferences(preferences: PreferencesInput!): User
+}
