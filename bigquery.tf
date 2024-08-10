@@ -1,5 +1,5 @@
 resource "google_bigquery_dataset" "db" {
-  dataset_id  = "${var.project_name}_dataset_${var.DATASET_ENV}"
+  dataset_id  = "${var.project_name}_dataset"
   description = "Dataset for ${var.project_name} project"
   location    = "US"
   project = google_project.project.project_id
