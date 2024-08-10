@@ -1,7 +1,7 @@
 type User {
     id: ID!
     preferences: [Preferences!]
-    publicKey: [PKIKey]!
+    publicKey: [PKIKey!]!
     updatedAt: Float!
 }
 
