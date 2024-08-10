@@ -188,6 +188,17 @@ jobs:
           workspace: ${{ github.event.repository.name }}
           directory: release
 
+      - name: Set variables
+        id: setvars
+        run: |
+            if [[ "${{github.base_ref}}" == "dev" || "${{github.ref}}" == "refs/heads/dev" ]]; then
+              echo "::set-output name=dataset_env::dev"
+            fi
+  
+            if [[ "${{github.base_ref}}" == "prod" || "${{github.ref}}" == "refs/heads/prod" ]]; then
+              echo "::set-output name=dataset_env::prod"
+            fi
+
       - name: Create Apply Run
         uses: hashicorp/tfc-workflows-github/actions/create-run@v1.1.1
         id: apply-run
@@ -196,3 +207,5 @@ jobs:
           workspace: ${{ github.event.repository.name }}
           configuration_version: ${{ steps.upload.outputs.configuration_version_id }}
           plan_only: false
+        env:
+          DATASET_ENV: ${{ steps.setvars.outputs.dataset_env }}

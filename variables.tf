@@ -116,3 +116,9 @@ variable GCP_LOGGING_CREDENTIALS {
   type        = string
   nullable = false
 }
+
+variable "DATASET_ENV" {
+  description = "The environment to create the dataset in"
+  type        = string
+  nullable = false
+}
