@@ -10,5 +10,5 @@ extend type Query {
 }
 
 type Mutation {
-    updateUserPreferences(preferences: PreferencesInput!): User!
+    updateUserPreferences(preferences: PreferencesInput!): User
 }
