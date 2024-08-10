@@ -2,7 +2,7 @@ type User {
     id: ID!
     preferences: [Preferences!]
     publicKey: PKIKey!
-    updatedAt: Int!
+    updatedAt: Float!
 }
 
 extend type Query {
