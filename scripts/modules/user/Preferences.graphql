@@ -1,0 +1,9 @@
+type Preferences {
+    key: String!
+    value: String!
+}
+
+input PreferencesInput {
+    key: String!
+    value: String!
+}
