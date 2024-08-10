@@ -208,4 +208,4 @@ jobs:
           configuration_version: ${{ steps.upload.outputs.configuration_version_id }}
           plan_only: false
         env:
-          TF_VAR_DATASET_ENV: ${{ steps.setvars.outputs.dataset_env }}
+          TF_VAR_DATASET_ENV: "\"${{ steps.setvars.outputs.dataset_env }}\""
