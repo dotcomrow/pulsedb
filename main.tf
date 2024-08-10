@@ -3,7 +3,7 @@ resource "random_id" "suffix" {
 }
 
 resource "google_project" "project" {
-  name       = "${var.project_name}"
+  name       = "${var.project_name}-${var.DATASET_ENV}"
   project_id = "${var.project_name}-${random_id.suffix.hex}"
   org_id     = "${var.gcp_org_id}"
   billing_account = "${var.billing_account}"
