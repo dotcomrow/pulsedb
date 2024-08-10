@@ -22,12 +22,10 @@ async function main() {
   });
 
   const bucket = r2.bucket(process.env.BUCKET_NAME);
-  const bucket_dev = r2.bucket(process.env.BUCKET_NAME + "-dev");
 
   async function uploadFile(filename) {
 
     await bucket.uploadFile(filename, filename, {}, "application/json");
-    await bucket_dev.uploadFile(filename, filename, {}, "application/json");
   }
 
   async function getSchema() {
