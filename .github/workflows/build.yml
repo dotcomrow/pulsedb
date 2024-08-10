@@ -64,13 +64,24 @@ jobs:
           mv build_graphql_schema.sh.new build_graphql_schema.sh
           chmod 777 build_graphql_schema.sh
 
+      - name: Set variables
+        id: setvars
+        run: |
+              if [[ "${{github.base_ref}}" == "dev" || "${{github.ref}}" == "refs/heads/dev" ]]; then
+                echo "dataset_env=dev" >> $GITHUB_OUTPUT
+              fi
+    
+              if [[ "${{github.base_ref}}" == "prod" || "${{github.ref}}" == "refs/heads/prod" ]]; then
+                echo "dataset_env=prod" >> $GITHUB_OUTPUT
+              fi
+
       - name: Commit
         run: |
           cd release
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
           git add .
-          git commit -m "Release ${{ steps.version.outputs.version }}"
+          git commit -m "Release ${{ steps.version.outputs.version }}-${{ steps.setvars.outputs.dataset_env }}"
           git push
 
       - name: Create release
@@ -84,7 +95,7 @@ jobs:
               const response = await github.rest.repos.createRelease({
                 draft: false,
                 generate_release_notes: true,
-                name: process.env.VERSION,
+                name: process.env.VERSION + '-${{ steps.setvars.outputs.dataset_env }}',
                 owner: context.repo.owner,
                 prerelease: false,
                 repo: context.repo.repo,
@@ -96,17 +107,6 @@ jobs:
             } catch (error) {
               core.setFailed(error.message);
             }
-
-      - name: Set variables
-        id: setvars
-        run: |
-            if [[ "${{github.base_ref}}" == "dev" || "${{github.ref}}" == "refs/heads/dev" ]]; then
-              echo "dataset_env=dev" >> $GITHUB_OUTPUT
-            fi
-  
-            if [[ "${{github.base_ref}}" == "prod" || "${{github.ref}}" == "refs/heads/prod" ]]; then
-              echo "dataset_env=prod" >> $GITHUB_OUTPUT
-            fi
 
       - name: Create workspace
         id: create_workspace
