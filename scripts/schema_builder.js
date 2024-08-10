@@ -21,7 +21,7 @@ async function main() {
       secretAccessKey: process.env.R2_ACCESS_KEY_SECRET,
   });
 
-  const bucket = r2.bucket(process.env.BUCKET_NAME);
+  const bucket = r2.bucket(process.env.BUCKET_NAME + "-" + process.env.DATASET_ENV);
 
   async function uploadFile(filename) {
 

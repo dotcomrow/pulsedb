@@ -39,6 +39,7 @@ resource "null_resource" "build_schema" {
       R2_ACCOUNT_ID = var.R2_account_id
       R2_ACCESS_KEY_ID = var.R2_access_key_id
       R2_ACCESS_KEY_SECRET = var.R2_secret_access_key
+      DATASET_ENV = var.DATASET_ENV
     }
   }
 
