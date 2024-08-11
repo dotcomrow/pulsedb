@@ -5,6 +5,6 @@ type Config {
 }
 
 extend type Query {
-    getAllConfig: [Config]!
+    getAllConfig: [Config]
     getConfigByName(config_name: String!): Config
 }
