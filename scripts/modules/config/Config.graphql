@@ -1,6 +1,7 @@
 type Config {
     config_name: String!
     config_value: String!
+    updatedAt: Float!
 }
 
 extend type Query {
