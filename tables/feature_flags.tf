@@ -9,7 +9,7 @@ resource "google_bigquery_table" "feature_flags" {
     "mode": "REQUIRED",
     "name": "id",
     "type": "STRING",
-    "defaultValueExpression": "GENERATE_UUID"
+    "defaultValueExpression": "GENERATE_UUID()"
   },
   {
     "mode": "REQUIRED",
