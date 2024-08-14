@@ -8,7 +8,8 @@ resource "google_bigquery_table" "feature_flags" {
   {
     "mode": "REQUIRED",
     "name": "id",
-    "type": "STRING"
+    "type": "STRING",
+    "defaultValueExpression": "GENERATE_UUID"
   },
   {
     "mode": "REQUIRED",
