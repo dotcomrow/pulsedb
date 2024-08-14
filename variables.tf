@@ -69,12 +69,6 @@ variable "registry_name" {
   nullable = false
 }
 
-variable "audience" {
-  description = "Audience for the auth service"
-  type        = string
-  nullable = false
-}
-
 variable "bucket_name" {
   description = "Bucket name"
   type        = string
