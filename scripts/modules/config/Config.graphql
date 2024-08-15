@@ -1,0 +1,10 @@
+type Config {
+    config_name: String!
+    config_value: String!
+    updatedAt: Float!
+}
+
+extend type Query {
+    getAllConfig: [Config]
+    getConfigByName(config_name: String!): Config
+}
