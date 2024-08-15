@@ -123,7 +123,7 @@ jobs:
       - name: Create Apply Run
         uses: hashicorp/tfc-workflows-github/actions/create-run@v1.1.1
         id: apply-run
-        if: ${{ steps.check_state.outputs.initial_deploy_state == 'disabled_manually' }}
+        if: ${{ steps.check_state.outputs.initial_deploy_state != 'disabled_manually' }}
         with:
           workspace: ${{ github.event.repository.name }}-${{ steps.setvars.outputs.environment }}
           configuration_version: ${{ steps.upload.outputs.configuration_version_id }}
