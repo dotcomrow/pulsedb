@@ -35,7 +35,7 @@ resource "null_resource" "build_schema" {
       GCP_LOGGING_CREDENTIALS = var.GCP_LOGGING_CREDENTIALS
       GCP_LOGGING_PROJECT_ID = var.GCP_LOGGING_PROJECT_ID
       LOG_NAME = "build_schema"
-      BUCKET_NAME = "${var.bucket_name}-${var.DATASET_ENV}-${random_id.suffix.hex}"
+      BUCKET_NAME = "${var.bucket_name}-${var.project_name}-${var.DATASET_ENV}"
       R2_ACCOUNT_ID = var.R2_account_id
       R2_ACCESS_KEY_ID = var.R2_access_key_id
       R2_ACCESS_KEY_SECRET = var.R2_secret_access_key
