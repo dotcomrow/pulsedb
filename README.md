@@ -1,2 +1,1 @@
-# terraform-google-ecomm
-Terraform bigquery ecomm DDL
+# pulsedb database project
