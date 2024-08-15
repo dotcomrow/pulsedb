@@ -1,0 +1,15 @@
+type Feature {
+    id: ID!
+    feature_name: String!
+    feature_type: String!
+    page_id: String!
+    condition: [Condition]
+    updated_at: Float!
+}
+
+input FeatureInput {
+    feature_name: String!
+    feature_type: String!
+    page_id: String!
+    condition: [ConditionInput]
+}
