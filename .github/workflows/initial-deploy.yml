@@ -107,8 +107,8 @@ jobs:
             "data": {
               "type":"vars",
               "attributes": {
-                "key":"environment",
-                "value":"${{ steps.setvars.outputs.environment }}",
+                "key":"DATASET_ENV",
+                "value":"${{ steps.setvars.outputs.dataset_env }}",
                 "description":"organization name",
                 "category":"terraform",
                 "hcl":false,
