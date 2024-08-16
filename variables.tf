@@ -116,3 +116,9 @@ variable "DATASET_ENV" {
   type        = string
   nullable = false
 }
+
+variable domain {
+  description = "The domain to use for the project"
+  type        = string
+  nullable = false
+}
