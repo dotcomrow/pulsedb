@@ -16,7 +16,7 @@ resource "google_project" "project_prod" {
   billing_account = "${var.billing_account}"
 }
 
-resource "google_project_service" "project_service" {
+resource "google_project_service" "project_service_dev" {
   count = length(var.apis)
 
   disable_dependent_services = true
@@ -24,7 +24,7 @@ resource "google_project_service" "project_service" {
   service = var.apis[count.index]
 }
 
-resource "google_project_service" "project_service" {
+resource "google_project_service" "project_service_prod" {
   count = length(var.apis)
 
   disable_dependent_services = true
@@ -32,64 +32,64 @@ resource "google_project_service" "project_service" {
   service = var.apis[count.index]
 }
 
-data "google_compute_default_service_account" "default" {
+data "google_compute_default_service_account" "default_dev" {
   project = google_project.project_dev.project_id
 
-  depends_on = [ google_project_service.project_service ]
+  depends_on = [ google_project_service.project_service_dev ]
 }
 
-data "google_compute_default_service_account" "default" {
+data "google_compute_default_service_account" "default_prod" {
   project = google_project.project_prod.project_id
 
-  depends_on = [ google_project_service.project_service ]
+  depends_on = [ google_project_service.project_service_prod ]
 }
 
-resource "google_project_iam_member" "registry_permissions" {
+resource "google_project_iam_member" "registry_permissions_dev" {
   project = var.common_project_id
   role   = "roles/composer.environmentAndStorageObjectViewer"
   member  = "serviceAccount:service-${google_project.project_dev.number}@serverless-robot-prod.iam.gserviceaccount.com"
 
-  depends_on = [ data.google_compute_default_service_account.default ]
+  depends_on = [ data.google_compute_default_service_account.default_dev ]
 }
 
-resource "google_project_iam_member" "artifact_permissions" {
+resource "google_project_iam_member" "artifact_permissions_dev" {
   project = var.common_project_id
   role   = "roles/artifactregistry.reader"
   member  = "serviceAccount:service-${google_project.project_dev.number}@serverless-robot-prod.iam.gserviceaccount.com"
 
-  depends_on = [ data.google_compute_default_service_account.default ]
+  depends_on = [ data.google_compute_default_service_account.default_dev ]
 }
 
-resource "google_project_iam_member" "artifact_compute_permissions" {
+resource "google_project_iam_member" "artifact_compute_permissions_dev" {
   project = var.common_project_id
   role   = "roles/artifactregistry.reader"
   member  = "serviceAccount:${google_project.project_dev.number}-compute@developer.gserviceaccount.com"
 
-  depends_on = [ data.google_compute_default_service_account.default ]
+  depends_on = [ data.google_compute_default_service_account.default_dev ]
 }
 
-resource "google_project_iam_member" "registry_permissions" {
+resource "google_project_iam_member" "registry_permissions_prod" {
   project = var.common_project_id
   role   = "roles/composer.environmentAndStorageObjectViewer"
   member  = "serviceAccount:service-${google_project.project_prod.number}@serverless-robot-prod.iam.gserviceaccount.com"
 
-  depends_on = [ data.google_compute_default_service_account.default ]
+  depends_on = [ data.google_compute_default_service_account.default_prod ]
 }
 
-resource "google_project_iam_member" "artifact_permissions" {
+resource "google_project_iam_member" "artifact_permissions_prod" {
   project = var.common_project_id
   role   = "roles/artifactregistry.reader"
   member  = "serviceAccount:service-${google_project.project_prod.number}@serverless-robot-prod.iam.gserviceaccount.com"
 
-  depends_on = [ data.google_compute_default_service_account.default ]
+  depends_on = [ data.google_compute_default_service_account.default_prod ]
 }
 
-resource "google_project_iam_member" "artifact_compute_permissions" {
+resource "google_project_iam_member" "artifact_compute_permissions_prod" {
   project = var.common_project_id
   role   = "roles/artifactregistry.reader"
   member  = "serviceAccount:${google_project.project_prod.number}-compute@developer.gserviceaccount.com"
 
-  depends_on = [ data.google_compute_default_service_account.default ]
+  depends_on = [ data.google_compute_default_service_account.default_prod ]
 }
 
 resource "google_project_iam_member" "developer_permissions" {
@@ -97,7 +97,7 @@ resource "google_project_iam_member" "developer_permissions" {
   role   = "roles/bigquery.dataViewer"
   member  = "group:developers@${var.domain}"
 
-  depends_on = [ data.google_compute_default_service_account.default ]
+  depends_on = [ data.google_compute_default_service_account.default_dev ]
 }
 
 data "google_iam_policy" "noauth" {

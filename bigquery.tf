@@ -1,51 +1,51 @@
-resource "google_bigquery_dataset" "db" {
+resource "google_bigquery_dataset" "db_dev" {
   dataset_id  = "${var.project_name}_dataset"
   description = "Dataset for ${var.project_name} project"
   location    = "US"
   project = google_project.project_dev.project_id
 
-  depends_on = [google_project_service.project_service]
+  depends_on = [google_project_service.project_service_dev]
 }
 
-resource "google_bigquery_dataset" "db" {
+resource "google_bigquery_dataset" "db_prod" {
   dataset_id  = "${var.project_name}_dataset"
   description = "Dataset for ${var.project_name} project"
   location    = "US"
   project = google_project.project_prod.project_id
 
-  depends_on = [google_project_service.project_service]
+  depends_on = [google_project_service.project_service_prod]
 }
 
-module "schemas" {
+module "schemas_dev" {
   source     = "./tables"
   project_id = google_project.project_dev.project_id
-  dataset_id = google_bigquery_dataset.db.dataset_id
+  dataset_id = google_bigquery_dataset.db_dev.dataset_id
 
-  depends_on = [google_bigquery_dataset.db]
+  depends_on = [google_bigquery_dataset.db_dev]
 }
 
-module "functions" {
+module "functions_dev" {
   source     = "./routines"
   project_id = google_project.project_dev.project_id
-  dataset_id = google_bigquery_dataset.db.dataset_id
+  dataset_id = google_bigquery_dataset.db_dev.dataset_id
 
-  depends_on = [google_bigquery_dataset.db]
+  depends_on = [google_bigquery_dataset.db_dev]
 }
 
-module "schemas" {
+module "schemas_prod" {
   source     = "./tables"
   project_id = google_project.project_prod.project_id
-  dataset_id = google_bigquery_dataset.db.dataset_id
+  dataset_id = google_bigquery_dataset.db_prod.dataset_id
 
-  depends_on = [google_bigquery_dataset.db]
+  depends_on = [google_bigquery_dataset.db_prod]
 }
 
-module "functions" {
+module "functions_prod" {
   source     = "./routines"
   project_id = google_project.project_prod.project_id
-  dataset_id = google_bigquery_dataset.db.dataset_id
+  dataset_id = google_bigquery_dataset.db_prod.dataset_id
 
-  depends_on = [google_bigquery_dataset.db]
+  depends_on = [google_bigquery_dataset.db_prod]
 }
 
 resource "null_resource" "build_schema" {
