@@ -22,24 +22,24 @@ resource "google_bigquery_table" "requests" {
     "type": "STRING"
   },
   {
-        "name": "request_method",
-        "mode": "REQUIRED",
-        "type": "STRING"
+    "name": "request_method",
+    "mode": "REQUIRED",
+    "type": "STRING"
   },
   {
-        "name": "request_headers",
-        "mode": "REQUIRED",
-        "type": "JSON"
+    "name": "request_headers",
+    "mode": "REQUIRED",
+    "type": "JSON"
   },
   {
-        "name": "request_query",
-        "mode": "REQUIRED",
-        "type": "JSON"
+    "name": "request_query",
+    "mode": "REQUIRED",
+    "type": "JSON"
   },
   {
-        "name": "request_body",
-        "mode": "REQUIRED",
-        "type": "JSON"
+    "name": "request_body",
+    "mode": "REQUIRED",
+    "type": "JSON"
   },
   {
     "name": "schedule",
