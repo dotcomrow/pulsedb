@@ -19,6 +19,7 @@ input ResponsesInput {
 
 extend type Query {
     responses: [Responses]
+    responseById(response_id: ID!): Responses
 }
 
 type Mutation {

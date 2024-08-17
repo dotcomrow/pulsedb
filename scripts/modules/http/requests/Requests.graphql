@@ -24,6 +24,7 @@ input RequestInput {
 
 extend type Query {
     requests: [Requests]
+    requestById(request_id: ID!): Requests
 }
 
 type Mutation {
