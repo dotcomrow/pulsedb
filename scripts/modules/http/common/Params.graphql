@@ -1,0 +1,4 @@
+type Params {
+    param_name: String!
+    param_value: String!
+}

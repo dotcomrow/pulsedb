@@ -1,0 +1,4 @@
+type Headers {
+    header_name: String!
+    header_value: String!
+}
