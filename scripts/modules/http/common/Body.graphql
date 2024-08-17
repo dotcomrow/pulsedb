@@ -1,0 +1,9 @@
+type Body {
+    element_name: String!
+    element_value: String!
+}
+
+input BodyInput {
+    element_name: String!
+    element_value: String!
+}

@@ -1,0 +1,9 @@
+type Headers {
+    header_name: String!
+    header_value: String!
+}
+
+input HeadersInput {
+    header_name: String!
+    header_value: String!
+}
