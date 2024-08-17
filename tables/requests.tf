@@ -13,7 +13,7 @@ resource "google_bigquery_table" "requests" {
   {
     "mode": "REQUIRED",
     "name": "request_id",
-    "type": "STRING"
+    "type": "STRING",
     "defaultValueExpression": "GENERATE_UUID()"
   },
   {

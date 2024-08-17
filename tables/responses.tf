@@ -18,7 +18,7 @@ resource "google_bigquery_table" "responses" {
   {
     "mode": "REQUIRED",
     "name": "response_id",
-    "type": "STRING"
+    "type": "STRING",
     "defaultValueExpression": "GENERATE_UUID()"
   },
   {
