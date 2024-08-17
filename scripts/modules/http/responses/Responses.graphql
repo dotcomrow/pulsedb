@@ -1,0 +1,9 @@
+type Responses {
+    account_id: ID!
+    request_id: ID!
+    response_id: ID!
+    response_status: Int!
+    response_headers: [Headers]
+    response_body: [Body]
+    updated_at: Float!
+}
