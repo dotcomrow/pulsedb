@@ -10,3 +10,24 @@ type Requests {
     request_response: [Responses]
     updated_at: Float!
 }
+
+input RequestInput {
+    request_id: ID!
+    request_url: String!
+    request_method: String!
+    request_headers: [HeadersInput]
+    request_body: [BodyInput]
+    request_query: [QueryInput]
+    request_params: [ParamsInput]
+    request_response: [ResponsesInput]
+}
+
+extend type Query {
+    requests: [Requests]
+}
+
+type Mutation {
+    createRequest(request: RequestInput!): Requests
+    updateRequest(request_id: ID!, request: RequestInput!): Requests
+    deleteRequest(request_id: ID!): Requests
+}

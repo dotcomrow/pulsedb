@@ -2,3 +2,8 @@ type Params {
     param_name: String!
     param_value: String!
 }
+
+input ParamsInput {
+    param_name: String!
+    param_value: String!
+}

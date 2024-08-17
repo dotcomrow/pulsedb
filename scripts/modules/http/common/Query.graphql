@@ -2,3 +2,8 @@ type Query {
     query_name: String!
     query_value: String!
 }
+
+input QueryInput {
+    query_name: String!
+    query_value: String!
+}
