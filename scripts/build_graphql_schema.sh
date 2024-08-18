@@ -6,22 +6,12 @@ export NVM_DIR="$HOME/.nvm"
 
 nvm install node
 
-cat > package.json <<EOF
-PKG_JSON_CONTENTS
-EOF
-
 npm install
-
-cat > schema_builder.js <<EOF
-JS_CONTENTS
-EOF
-
-
 
 node schema_builder.js
 
 cat <<EOF
 {
-  "res": "test"
+  "result": "complete"
 }
 EOF
