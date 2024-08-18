@@ -75,7 +75,7 @@ jobs:
         if: ${{ steps.check_state.outputs.initial_deploy_state == 'disabled_manually' }}
         with:
           workspace: ${{ github.event.repository.name }}-${{ steps.setvars.outputs.environment }}
-          directory: release
+          directory: .
 
       - name: Create Apply Run
         uses: hashicorp/tfc-workflows-github/actions/create-run@v1.1.1
