@@ -5,7 +5,7 @@ type Requests {
     request_method: String!
     request_headers: [Headers]
     request_body: [Body]
-    request_query: [Query]
+    request_query: [QueryParams]
     request_params: [Params]
     request_response: [Responses]
     updated_at: Float!
@@ -17,7 +17,7 @@ input RequestInput {
     request_method: String!
     request_headers: [HeadersInput]
     request_body: [BodyInput]
-    request_query: [QueryInput]
+    request_query: [QueryParamsInput]
     request_params: [ParamsInput]
     request_response: [ResponsesInput]
 }

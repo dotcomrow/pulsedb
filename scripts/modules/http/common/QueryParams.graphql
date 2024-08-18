@@ -1,9 +1,9 @@
-type Query {
+type QueryParams {
     query_name: String!
     query_value: String!
 }
 
-input QueryInput {
+input QueryParamsInput {
     query_name: String!
     query_value: String!
 }
