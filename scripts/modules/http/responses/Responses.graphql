@@ -1,0 +1,29 @@
+type Responses {
+    account_id: ID!
+    request_id: ID!
+    response_id: ID!
+    response_status: Int!
+    response_headers: [Headers]
+    response_body: [Body]
+    updated_at: Float!
+}
+
+input ResponsesInput {
+    account_id: ID!
+    request_id: ID!
+    response_id: ID!
+    response_status: Int!
+    response_headers: [HeadersInput]
+    response_body: [BodyInput]
+}
+
+extend type Query {
+    responses: [Responses]
+    responseById(response_id: ID!): Responses
+}
+
+type Mutation {
+    createResponse(response: ResponsesInput!): Responses
+    updateResponse(response_id: ID!, response: ResponsesInput!): Responses
+    deleteResponse(response_id: ID!): Responses
+}

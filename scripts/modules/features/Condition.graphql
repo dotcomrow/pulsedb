@@ -1,0 +1,9 @@
+type Condition {
+    key: String!
+    value: String!
+}
+
+input ConditionInput {
+    key: String!
+    value: String!
+}
