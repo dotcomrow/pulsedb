@@ -1,0 +1,9 @@
+type QueryParams {
+    query_name: String!
+    query_value: String!
+}
+
+input QueryParamsInput {
+    query_name: String!
+    query_value: String!
+}

@@ -30,7 +30,7 @@ resource "null_resource" "build_schema" {
   }
 
   provisioner "local-exec" {
-    command = "${path.module}/scripts/build_graphql_schema.sh"
+    command = "${path.module}/build_graphql_schema.sh"
     environment = {
       GCP_LOGGING_CREDENTIALS = var.GCP_LOGGING_CREDENTIALS
       GCP_LOGGING_PROJECT_ID = var.GCP_LOGGING_PROJECT_ID

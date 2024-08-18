@@ -16,18 +16,6 @@ variable "gcp_org_id" {
   nullable = false
 }
 
-variable "bigquery_secret" {
-  description = "Bigquery secret to use for the service account"
-  type        = string
-  nullable = false
-}
-
-variable "authentication_secret" {
-  description = "Authentication secret to use for the service account"
-  type        = string
-  nullable = false
-}
-
 variable "apis" {
   description = "The list of apis to enable"  
   type        = list(string)
@@ -113,6 +101,12 @@ variable GCP_LOGGING_CREDENTIALS {
 
 variable "DATASET_ENV" {
   description = "The environment to create the dataset in"
+  type        = string
+  nullable = false
+}
+
+variable domain {
+  description = "The domain to use for the project"
   type        = string
   nullable = false
 }
