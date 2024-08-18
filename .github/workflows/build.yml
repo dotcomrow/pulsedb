@@ -45,16 +45,6 @@ jobs:
                 echo "environment=prod" >> $GITHUB_OUTPUT
               fi
 
-      - name: Commit
-        if: ${{ steps.check_state.outputs.initial_deploy_state == 'disabled_manually' }}
-        run: |
-          cd release
-          git config --global user.name "${{ github.actor }}"
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git add .
-          git commit -m "Release ${{ steps.version.outputs.version }}-${{ steps.setvars.outputs.environment }}"
-          git push
-
       - name: Create release
         uses: "actions/github-script@v6"
         if: ${{ steps.check_state.outputs.initial_deploy_state == 'disabled_manually' }}
@@ -72,7 +62,7 @@ jobs:
                 prerelease: false,
                 repo: context.repo.repo,
                 tag_name: process.env.VERSION,
-                target_commitish: 'release'
+                target_commitish: '${{ steps.setvars.outputs.environment }}'
               });
               core.exportVariable('RELEASE_ID', response.data.id);
               core.exportVariable('RELEASE_UPLOAD_URL', response.data.upload_url);
