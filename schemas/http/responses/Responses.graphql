@@ -22,7 +22,7 @@ extend type Query {
     responseById(response_id: ID!): Responses
 }
 
-type Mutation {
+extend type Mutation {
     createResponse(response: ResponsesInput!): Responses
     updateResponse(response_id: ID!, response: ResponsesInput!): Responses
     deleteResponse(response_id: ID!): Responses

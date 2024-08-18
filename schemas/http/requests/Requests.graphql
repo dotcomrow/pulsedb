@@ -27,7 +27,7 @@ extend type Query {
     requestById(request_id: ID!): Requests
 }
 
-type Mutation {
+extend type Mutation {
     createRequest(request: RequestInput!): Requests
     updateRequest(request_id: ID!, request: RequestInput!): Requests
     deleteRequest(request_id: ID!): Requests
