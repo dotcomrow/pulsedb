@@ -11,7 +11,6 @@ type Responses {
 input ResponsesInput {
     account_id: ID!
     request_id: ID!
-    response_id: ID!
     response_status: Int!
     response_headers: [HeadersInput]
     response_body: [BodyInput]
