@@ -27,8 +27,8 @@
     "graphql": "^16.8.1",
     "@graphql-tools/schema": "^9.0.0",
     "node-cloudflare-r2": "0.1.5",
-    "npm-gcp-logging": "^1.0.53",
-    "npm-gcp-token": "^1.0.12"
+    "npm-gcp-logging": "^1.0.58",
+    "npm-gcp-token": "^1.0.19"
   },
   "private": true,
   "type": "module",
