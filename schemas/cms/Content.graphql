@@ -1,0 +1,32 @@
+type Content {
+    key: String!
+    group_key: String!
+    language: String!
+    version: String!
+    content: String!
+    created_by: String!
+    updated_by: String!
+    created_at: Float!
+    updated_at: Float!
+}
+
+input ContentInput {
+    key: String!
+    group_key: String!
+    language: String!
+    version: String!
+    content: String!
+}
+
+extend type Query {
+    content: [Content]
+    contentByKey(key: String!): [Content]
+    contentByGroup(group_key: String!): [Content]
+    contentByLanguageAndGroup(language: String!, group_key: String!): [Content]
+}
+
+extend type Mutation {
+    createContent(content: ContentInput!): Content
+    updateContent(key: String!, group_key: String!, language: String!, version: String!, content: String!): Content
+    deleteContent(key: String!, group_key: String!, language: String!, version: String!): String
+}
