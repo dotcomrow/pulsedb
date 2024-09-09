@@ -26,7 +26,7 @@ resource "google_bigquery_table" "content" {
     "type": "STRING"
   },
   {
-    "name": "content",
+    "name": "content_text",
     "mode": "REQUIRED",
     "type": "STRING"
   },
