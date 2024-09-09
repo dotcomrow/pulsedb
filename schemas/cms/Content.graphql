@@ -19,7 +19,6 @@ input ContentInput {
 }
 
 extend type Query {
-    content: [Content]
     contentByKey(key: String!): [Content]
     contentByGroup(group_key: String!): [Content]
     contentByLanguageAndGroup(language: String!, group_key: String!): [Content]
