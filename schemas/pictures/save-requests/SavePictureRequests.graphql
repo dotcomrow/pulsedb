@@ -1,8 +1,14 @@
-type SavePictureRequests {
+input SavePictureRequests {
     account_id: ID!
     request_id: ID!
     updated_at: Float!
     location: String!
     direction: String!
     timestamp: Float!
+}
+
+extend type Mutation {
+    savePictureRequest(request: SavePictureRequests!): FetchPictureRequests
+    updatePictureRequest(request_id: ID!, request: SavePictureRequests!): FetchPictureRequests
+    deletePictureRequest(request_id: ID!): ID!
 }
