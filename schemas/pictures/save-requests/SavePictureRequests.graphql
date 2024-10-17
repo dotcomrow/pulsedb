@@ -1,0 +1,8 @@
+type SavePictureRequests {
+    account_id: ID!
+    request_id: ID!
+    updated_at: Float!
+    location: String!
+    direction: String!
+    timestamp: Float!
+}
