@@ -1,5 +1,4 @@
 input SavePictureRequests {
-    request_id: ID!
     location: String!
     direction: String!
     timestamp: Float!
