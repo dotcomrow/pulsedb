@@ -33,7 +33,7 @@ resource "google_bigquery_table" "picture_requests" {
     "mode": "REQUIRED"
   },
   {
-    "name": "timestamp",
+    "name": "capture_timestamp",
     "type": "TIMESTAMP",
     "mode": "REQUIRED"
   }
