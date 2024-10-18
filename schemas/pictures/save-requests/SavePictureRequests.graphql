@@ -1,7 +1,7 @@
 input SavePictureRequests {
     location: String!
     direction: String!
-    timestamp: Float!
+    capture_timestamp: Float!
 }
 
 extend type Mutation {
