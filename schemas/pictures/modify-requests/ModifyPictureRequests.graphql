@@ -1,6 +1,6 @@
 input SavePictureRequests {
     location: String!
-    direction: String!
+    direction: Int!
     capture_timestamp: Float!
 }
 

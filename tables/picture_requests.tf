@@ -29,7 +29,7 @@ resource "google_bigquery_table" "picture_requests" {
   },
   {
     "name": "direction",
-    "type": "STRING",
+    "type": "NUMERIC",
     "mode": "REQUIRED"
   },
   {

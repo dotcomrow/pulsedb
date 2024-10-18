@@ -3,7 +3,7 @@ type FetchPictureRequests {
     request_id: ID!
     updated_at: Float!
     location: String!
-    direction: String!
+    direction: Int!
     capture_timestamp: Float!
 }
 
